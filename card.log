@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.9.8)  8 SEP 2025 09:13
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.9.8)  9 SEP 2025 10:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -339,32 +339,23 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 
 File: logo.pdf Graphic file (type pdf)
 <use logo.pdf>
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 22.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 22.
-
-Overfull \hbox (12.47346pt too wide) in paragraph at lines 28--29
-[]\TU/GillSans(0)/m/n/10 kemeriyagerad14@gmail.com 
- []
-
-
-
-[1
-
-] (./card.aux)
- ***********
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
- ***********
- ) 
+! Too many }'s.
+l.22 \normalsize DS Master's Student}
+                                     
+? git init
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, E to edit your file,
+1 or ... or 9 to ignore the next 1 to 9 tokens of input,
+H for help, X to quit.
+? x
+ 
 Here is how much of TeX's memory you used:
- 4238 strings out of 475366
- 118768 string characters out of 5762340
- 541341 words of memory out of 5000000
- 27200 multiletter control sequences out of 15000+600000
- 558965 words of font info for 52 fonts, out of 8000000 for 9000
+ 4225 strings out of 475366
+ 118464 string characters out of 5762340
+ 539341 words of memory out of 5000000
+ 27192 multiletter control sequences out of 15000+600000
+ 558949 words of font info for 50 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 94i,5n,107p,297b,220s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-Output written on card.pdf (1 page).
+ 94i,4n,107p,297b,220s stack positions out of 10000i,1000n,20000p,200000b,200000s
+No pages of output.
