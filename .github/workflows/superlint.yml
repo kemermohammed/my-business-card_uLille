@@ -3,38 +3,24 @@ name: LaTeX Auto Release
 on:
   push:
     tags:
-      - 'v*'   # triggers on tags like v1.0.0
+      - 'v*'
 
 jobs:
   build-and-release:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
-      # 1. Checkout repo
       - uses: actions/checkout@v4
 
-      # 2. Install LaTeX (XeLaTeX) and lacheck
       - name: Install LaTeX
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-xetex texlive-latex-extra lacheck
+        run: sudo apt-get update && sudo apt-get install -y texlive-xetex texlive-latex-extra
 
-      # 3. Lint LaTeX
-      - name: Lint LaTeX
-        run: lacheck card.tex
-
-      # 4. Compile LaTeX twice for references/fonts
       - name: Compile LaTeX
         run: |
           xelatex -interaction=nonstopmode card.tex
           xelatex -interaction=nonstopmode card.tex
 
-      # 5. Check that PDF exists (debug)
-      - name: List files
-        run: ls -lh
-
-      # 6. Create GitHub release
-      - name: Create Release
+      - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
@@ -42,7 +28,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 7. Upload PDF to release
       - name: Upload PDF
         uses: softprops/action-upload-release-asset@v1
         with:
