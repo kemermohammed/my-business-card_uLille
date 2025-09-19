@@ -1,0 +1,28 @@
+name: LaTeX Linter
+
+# Trigger workflow on push or pull request
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: macos-latest
+    steps:
+      # Step 1: Checkout your repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Install lacheck (LaTeX linter) and TeX Live
+      - name: Install LaTeX and Lacheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-base lacheck
+
+      # Step 3: Run lacheck on your main LaTeX file(s)
+      - name: Run LaTeX Linter
+        run: |
+          # Replace 'main.tex' with your LaTeX file name
+          lacheck main.tex
