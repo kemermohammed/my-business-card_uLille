@@ -1,28 +1,50 @@
-name: LaTeX Linter
+name: LaTeX Auto Release
 
-# Trigger workflow on push or pull request
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    tags:
+      - 'v*'   # triggers on tags like v1.0.0
 
 jobs:
-  lint:
-    runs-on: macos-latest
-    steps:
-      # Step 1: Checkout your repo
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  build-and-release:
+    runs-on: ubuntu-latest
 
-      # Step 2: Install lacheck (LaTeX linter) and TeX Live
-      - name: Install LaTeX and Lacheck
+    steps:
+      # Step 1: Checkout repo
+      - uses: actions/checkout@v4
+
+      # Step 2: Install LaTeX packages (including XeLaTeX)
+      - name: Install LaTeX
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-latex-base lacheck
+          sudo apt-get install -y texlive-xetex texlive-latex-extra lacheck
 
-      # Step 3: Run lacheck on your main LaTeX file(s)
-      - name: Run LaTeX Linter
+      # Step 3: Lint LaTeX
+      - name: Lint LaTeX
+        run: lacheck card.tex
+
+      # Step 4: Compile LaTeX to PDF (XeLaTeX)
+      - name: Compile LaTeX
         run: |
-          # Replace 'main.tex' with your LaTeX file name
-          lacheck main.tex
+          xelatex -interaction=nonstopmode card.tex
+          xelatex -interaction=nonstopmode card.tex
+
+      # Step 5: Create GitHub Release
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 6: Upload PDF
+      - name: Upload PDF
+        uses: softprops/action-upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./card.pdf
+          asset_name: card.pdf
+          asset_content_type: application/pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
