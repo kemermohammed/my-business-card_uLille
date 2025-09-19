@@ -3,18 +3,19 @@ name: LaTeX Auto Release
 on:
   push:
     tags:
-      - 'v*'   # triggers on tags like v1.0.0
+      - 'v*'   # triggers on tags like v1.0.0, v1.0.1, etc.
 
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout repo
-      - uses: actions/checkout@v4
+      # Step 1: Checkout repository
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      # Step 2: Install LaTeX packages (including XeLaTeX)
-      - name: Install LaTeX
+      # Step 2: Install LaTeX packages including XeLaTeX and lacheck
+      - name: Install LaTeX and lacheck
         run: |
           sudo apt-get update
           sudo apt-get install -y texlive-xetex texlive-latex-extra lacheck
@@ -23,13 +24,17 @@ jobs:
       - name: Lint LaTeX
         run: lacheck card.tex
 
-      # Step 4: Compile LaTeX to PDF (XeLaTeX)
+      # Step 4: Compile LaTeX to PDF twice
       - name: Compile LaTeX
         run: |
           xelatex -interaction=nonstopmode card.tex
           xelatex -interaction=nonstopmode card.tex
 
-      # Step 5: Create GitHub Release
+      # Step 5: Debug - check that PDF exists
+      - name: List files for debug
+        run: ls -lh
+
+      # Step 6: Create GitHub release
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v1
@@ -38,12 +43,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 6: Upload PDF
+      # Step 7: Upload the PDF to the release
       - name: Upload PDF
         uses: softprops/action-upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./card.pdf
+          asset_path: ./card.pdf     # adjust path if PDF is in subfolder
           asset_name: card.pdf
           asset_content_type: application/pdf
         env:
