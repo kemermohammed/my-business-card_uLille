@@ -1,23 +1,12 @@
+# macOS system files
+.DS_Store
+
 # LaTeX auxiliary files
 *.aux
 *.log
-*.toc
 *.out
-*.lof
-*.lot
-*.fls
-*.fdb_latexmk
-*.synctex.gz
-*.blg
-*.bbl
+*.toc
 
-# LaTeX temporary and backup files
-*~
-*.bak
-*.backup
-
-# Compiled PDF output
+# PDF output (optional)
 *.pdf
-
-# OS-specific files (Mac)
-.DS_Store
+!logo.pdf
