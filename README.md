@@ -35,7 +35,7 @@ To manage changes safely, I used a separate branch (`new_logo`) for experimentin
 - `logo.pdf` → My personal logo  
 - `.gitignore` → Ignores compiled PDFs and temporary LaTeX files  
 - `README.md` → This file  
-- `myCard/` → Optional folder with images or resources used in the card  
+
 
 > **Note:** Compiled PDFs (`card.pdf`) and auxiliary LaTeX files are ignored in Git to keep the repository clean.
 
