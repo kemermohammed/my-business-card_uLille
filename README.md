@@ -12,7 +12,7 @@ It demonstrates how to manage a small project with Git, including branching, mer
 ## Preview
 
 You can view the final business card PDF here:  
-[View My Business Card PDF](card.pdf)
+[View My Business Card PDF](https://drive.google.com/file/d/1JlckTrYCkPDTKG9jE_0qUJQdhPF_2_yk/view?usp=sharing)
 
 
 
