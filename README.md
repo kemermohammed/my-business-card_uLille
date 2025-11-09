@@ -1,33 +1,50 @@
-(Credits to https://github.com/jilljenn/business-card)
+# My Personal Business Card
 
-# Business Card
+---
 
-In March 2014, I attended the 1st [Learning at Scale conference](http://learningatscale.acm.org/las2014/).  
-In the subway, some nice guy told me I **had to** make business cards for the conference. So I went to some [kinko](https://en.wikipedia.org/wiki/FedEx_Office) and asked:
+## Overview
 
-- How much for 250 business cards?
-- $69.
-- If I provide a PDF and just ask you to print and cut, can you do it for today?
-- Yes.
-- How much?
-- $39. Do you have the file?
-- Yes.
+This repository contains the **LaTeX source files** for my personal business card.  
+It demonstrates how to manage a small project with Git, including branching, merging, and version control for assets like logos.
 
-It was a lie. I opened a new LaTeX document and typed this thing, thanks to Stack Overflow.
+---
 
-![Some business card in LaTeX](card.png)
+## Preview
 
-## Requirements
+You can view the final business card PDF here:  
+[View My Business Card PDF](card.pdf)
 
-- XeLaTeX
-- Gill Sans, but you can change the font
 
-## Build
 
-    xelatex card
+## The Story
 
-## License
+I wanted a business card that reflects my style and can be **easily updated**.  
+Using LaTeX allowed me to:
 
-AGPLv3 because I like to force people to be free.
+- Keep a **clean source file** (`card.tex`)  
+- Add and update a **custom logo** (`logo.pdf`)  
+- Compile a professional-looking PDF repeatedly without starting from scratch  
 
-© 2017 Jill-Jênn Vie
+To manage changes safely, I used a separate branch (`new_logo`) for experimenting with new logos before merging them into the main branch (`master`).
+
+---
+
+## Files
+
+- `card.tex` → LaTeX source of the business card  
+- `logo.pdf` → My personal logo  
+- `.gitignore` → Ignores compiled PDFs and temporary LaTeX files  
+- `README.md` → This file  
+- `myCard/` → Optional folder with images or resources used in the card  
+
+> **Note:** Compiled PDFs (`card.pdf`) and auxiliary LaTeX files are ignored in Git to keep the repository clean.
+
+---
+
+## Build / Compile Instructions
+
+1. Install **TeX Live** (or MikTeX).  
+2. Compile the card using **XeLaTeX**:
+
+```bash
+xelatex card.tex
